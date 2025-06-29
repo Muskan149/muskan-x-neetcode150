@@ -10,19 +10,21 @@ class Solution:
             # if row.0 <= target <= row.end
                 # do binary search within elem
             if midRow[0] <= target <= midRow[-1]:
-                # left, right = 0, len(midRow) - 1
-                for elem in midRow:
-                    if elem == target:
+                left, right = 0, len(midRow) - 1
+                # for elem in midRow:
+                #     if elem == target:
+                #         return True
+                # return False
+                while left <= right:
+                    mid = (left + right) // 2
+                    midNum = midRow[mid]
+                    if midNum > target:
+                        right = mid - 1
+                    elif target > midNum:
+                        left = mid + 1
+                    else:
                         return True
                 return False
-                # while left < right:
-                #     mid = (left + right) // 2
-                #     if midRow[mid] == target:
-                #         return True
-                #     elif midRow[mid] > target:
-                #         right = mid - 1
-                #     else:
-                #         left = mid + 1
             # else if row.0 > target:
                 # change bottom to row - 1
             elif midRow[0] > target:
@@ -33,4 +35,3 @@ class Solution:
                 top = mid + 1
 
         return False
-        
